@@ -10,12 +10,16 @@ private:
         Node *LC, *RC;
         int index;
     };
+    Node *root;
 
 public:
-    Node *root;
     BinaryTree()
     {
         root = NULL;
+    }
+    Node *getroot()
+    {
+        return root;
     }
     void addTree(int value)
     {
@@ -34,7 +38,7 @@ public:
 
             Node *temproot;
             temproot = root;
-            while (true)
+            while (1==1)
             {
                 if (newnode->data < temproot->data)
                 {
@@ -93,11 +97,15 @@ public:
             }
             else
             {
-                cout << "Number found at " << ptr->index <<" tree index"<< endl;
+                cout << "Number found at " << ptr->index << " tree index" << endl;
                 return;
             }
         }
         cout << "Number not found" << endl;
+    }
+    ~BinaryTree()
+    {
+        delete root;
     }
 };
 int main()
@@ -110,6 +118,6 @@ int main()
     obj.addTree(9);
     obj.addTree(3);
     obj.addTree(25);
-    obj.inOrderDisplay(obj.root);
+    obj.inOrderDisplay(obj.getroot());
     obj.SearchNode(10);
 }

@@ -81,6 +81,10 @@ public:
         }
         
     }
+    ~LinkedList(){
+        delete front;
+        delete back;
+    }
 };
 
 

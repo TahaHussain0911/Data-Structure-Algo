@@ -76,6 +76,9 @@ public:
         }
         
     }
+    ~LinkedList(){
+        delete head;
+    }
 };
 
 int main()

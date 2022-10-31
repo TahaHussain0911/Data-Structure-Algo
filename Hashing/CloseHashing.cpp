@@ -99,6 +99,9 @@ public:
             }
         }
     }
+    ~ClosedHash(){
+        delete[] HT;     
+    }
 };
 int main()
 {
