@@ -1,52 +1,53 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include<string>
+#include <string>
 using namespace std;
-void Outdegree(int **array,int size)
+void Outdegree(int **array, int size)
 {
-    int OD[size];
+    int *OD;
+    OD = new int[size];
     for (int i = 0; i < size; i++)
     {
         int count = 0;
         for (int j = 0; j < size; j++)
         {
-            if (array[i][j]!=0)
+            if (array[i][j] != 0)
             {
                 count++;
             }
         }
-        OD[i]=count;
+        OD[i] = count;
     }
-    cout<<"Outdegrees are: ";
+    cout << "Outdegrees are: ";
     for (int i = 0; i < size; i++)
     {
-        cout<<OD[i]<<" ";
+        cout << OD[i] << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
-void Indegree(int **array,int size)
+void Indegree(int **array, int size)
 {
-    int IN[size];
+    int *IN;
+    IN = new int[size];
     for (int i = 0; i < size; i++)
     {
         int count = 0;
         for (int j = 0; j < size; j++)
         {
-            if (array[j][i]!=0)
+            if (array[j][i] != 0)
             {
                 count++;
             }
-            
         }
-        IN[i]=count;
+        IN[i] = count;
     }
-    cout<<"Indegrees are: ";
+    cout << "Indegrees are: ";
     for (int i = 0; i < size; i++)
     {
-        cout<<IN[i]<<" ";
+        cout << IN[i] << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 int main()
 {
@@ -55,41 +56,42 @@ int main()
     string ignoreline;
     getline(Myfile, ignoreline);
     string veredge;
-    getline(Myfile, veredge); 
+    getline(Myfile, veredge);
     // cout<<veredge.length();
-    char vevalues[veredge.length()]; 
+    char vevalues[veredge.length()];
     strcpy(vevalues, veredge.c_str());
     char *ptr;
     int const vertices = atoi(strtok(vevalues, " "));
     int const edges = atoi(strtok(NULL, ""));
     int **arr;
-    *arr=new int[vertices];
+    *arr = new int[vertices];
     for (int i = 0; i < vertices; i++)
     {
-        arr[i]=new int[vertices];
+        arr[i] = new int[vertices];
     }
-    
+
     for (int i = 0; i < vertices; i++)
     {
         for (int j = 0; j < vertices; j++)
         {
-            arr[i][j]=0;
-        }   
+            arr[i][j] = 0;
+        }
     }
     while (!Myfile.eof())
     {
         string data;
-        getline(Myfile, data); 
+        getline(Myfile, data);
         char chardata[data.length()];
-        strcpy(chardata, data.c_str()); 
-        int X = atoi(strtok(chardata, ",")); 
-        int Y = atoi(strtok(NULL, ",")); 
+        strcpy(chardata, data.c_str());
+        int X = atoi(strtok(chardata, ","));
+        int Y = atoi(strtok(NULL, ","));
         int value = atoi(strtok(NULL, ""));
         if (value == 0)
         {
             arr[X][Y] = 1;
         }
-        else{
+        else
+        {
             arr[X][Y] = value;
         }
     }
@@ -101,7 +103,6 @@ int main()
     //     temparr[i]=new int[5];
     // }
     // temparr[0][1]=2;
-    Outdegree(arr,vertices);
-    Indegree(arr,vertices);
-
+    Outdegree(arr, vertices);
+    Indegree(arr, vertices);
 }
