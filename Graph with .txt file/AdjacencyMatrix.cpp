@@ -3,7 +3,7 @@
 #include <cstring>
 #include<string>
 using namespace std;
-void Outdegree(int *array,int size)
+void Outdegree(int **array,int size)
 {
     int OD[size];
     for (int i = 0; i < size; i++)
@@ -11,7 +11,7 @@ void Outdegree(int *array,int size)
         int count = 0;
         for (int j = 0; j < size; j++)
         {
-            if (*((array)+i*size+j)!=0)
+            if (array[i][j]!=0)
             {
                 count++;
             }
@@ -25,7 +25,7 @@ void Outdegree(int *array,int size)
     }
     cout<<endl;
 }
-void Indegree(int *array,int size)
+void Indegree(int **array,int size)
 {
     int IN[size];
     for (int i = 0; i < size; i++)
@@ -33,7 +33,7 @@ void Indegree(int *array,int size)
         int count = 0;
         for (int j = 0; j < size; j++)
         {
-            if (*((array)+j*size+i)!=0)
+            if (array[j][i]!=0)
             {
                 count++;
             }
@@ -56,13 +56,19 @@ int main()
     getline(Myfile, ignoreline);
     string veredge;
     getline(Myfile, veredge); 
-    cout<<veredge.length();
+    // cout<<veredge.length();
     char vevalues[veredge.length()]; 
     strcpy(vevalues, veredge.c_str());
     char *ptr;
     int const vertices = atoi(strtok(vevalues, " "));
     int const edges = atoi(strtok(NULL, ""));
-    int arr[vertices][vertices];
+    int **arr;
+    *arr=new int[vertices];
+    for (int i = 0; i < vertices; i++)
+    {
+        arr[i]=new int[vertices];
+    }
+    
     for (int i = 0; i < vertices; i++)
     {
         for (int j = 0; j < vertices; j++)
@@ -88,14 +94,14 @@ int main()
         }
     }
     Myfile.close();
-    int **temparr;
-    *temparr=new int[5];
-    for (int i = 0; i < 5; i++)
-    {
-        temparr[i]=new int[5];
-    }
-    temparr[0][1]=2;
-    Outdegree((int *)arr,vertices);
-    Indegree((int *)arr,vertices);
+    // int **temparr;
+    // *temparr=new int[5];
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     temparr[i]=new int[5];
+    // }
+    // temparr[0][1]=2;
+    Outdegree(arr,vertices);
+    Indegree(arr,vertices);
 
 }
