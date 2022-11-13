@@ -12,7 +12,7 @@ private:
         Node *RightCH, *LeftCH;
     };
     string postfixexp;
-    Node *root = NULL;
+    Node *root;
 
     int isOperator(char c)
     {
@@ -27,6 +27,7 @@ public:
     ExpTree(string exp)
     {
         this->postfixexp = exp;
+        root=NULL;
     }
     Node *getroot()
     {
