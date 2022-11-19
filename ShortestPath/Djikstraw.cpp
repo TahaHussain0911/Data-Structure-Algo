@@ -20,7 +20,7 @@ int NotaVertex(bool *array, int size)
 {
     for (int i = 0; i < size; i++)
     {
-        if (!array[i])
+        if (!array[i]) //0
         {
             return 1;
         }
@@ -33,7 +33,7 @@ void Djikstraw(int **array, int size)
     int distance[size];
     int previous[size];
     memset(connected, false, size);
-    int v = 0;
+    int v = 3; //source
     for (int i = 0; i < size; i++)
     {
         distance[i]=99999;
@@ -50,7 +50,7 @@ void Djikstraw(int **array, int size)
         {
             if (!connected[i])
             {
-                if (array[v][i] != 0 && distance[v] + array[v][i] < distance[i])
+                if (array[v][i] != 0 && distance[v] /*0*/ + array[v][i]  /* array[0][3]=1*/ < distance[i] /*2*/ )  //v=0
                 {
                     distance[i] = distance[v] + array[v][i];
                     previous[i]=v;
@@ -62,7 +62,7 @@ void Djikstraw(int **array, int size)
         {
             if (!connected[j])
             {
-                if (smallest > distance[j])
+                if (smallest >= distance[j])
                 {
                     smallest = distance[j];
                     v = j;
@@ -80,14 +80,16 @@ int main()
     Myfile.open("graph.txt");
     string ignoreline;
     getline(Myfile, ignoreline);
+    cout<<ignoreline<<endl;
     string veredge;
     getline(Myfile, veredge);
+    // 7 5
     // cout<<veredge.length();
     char vevalues[veredge.length()];
     strcpy(vevalues, veredge.c_str());
-    char *ptr;
-    int const vertices = atoi(strtok(vevalues, " "));
-    int const edges = atoi(strtok(NULL, ""));
+    // char *ptr; //7 5 9
+    int const vertices = atoi(strtok(vevalues, " ")); //7
+    int const edges = atoi(strtok(NULL, "")); //5
     int **arr;
     *arr = new int[vertices];
     for (int i = 0; i < vertices; i++)
@@ -108,9 +110,10 @@ int main()
         getline(Myfile, data);
         char chardata[data.length()];
         strcpy(chardata, data.c_str());
-        int X = atoi(strtok(chardata, ","));
-        int Y = atoi(strtok(NULL, ","));
-        int value = atoi(strtok(NULL, ""));
+        //0,1,2 chardata[5] char["0",",","1",",","2"]
+        int X = atoi(strtok(chardata, ",")); //0
+        int Y = atoi(strtok(NULL, ",")); //1
+        int value = atoi(strtok(NULL, ""));  //2
         if (value == 0)
         {
             arr[X][Y] = 1;
@@ -118,6 +121,7 @@ int main()
         else
         {
             arr[X][Y] = value;
+            // arr[Y][X]=value;
         }
     }
     Myfile.close();

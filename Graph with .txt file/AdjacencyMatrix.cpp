@@ -3,6 +3,53 @@
 #include <cstring>
 #include <string>
 using namespace std;
+void Outdegree(int **array, int size)
+{
+    int *OD;
+    OD = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        int count = 0;
+        for (int j = 0; j < size; j++)
+        {
+            if (array[i][j] != 0)
+            {
+                count++;
+            }
+        }
+        OD[i] = count;
+    }
+    cout << "Outdegrees are: ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << OD[i] << " ";
+    }
+    cout << endl;
+}
+void Indegree(int **array, int size)
+{
+    int *IN;
+    IN = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        int count = 0;
+        for (int j = 0; j < size; j++)
+        {
+            if (array[j][i] != 0)
+            {
+                count++;
+            }
+        }
+        IN[i] = count;
+    }
+    cout << "Indegrees are: ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << IN[i] << " ";
+    }
+    cout << endl;
+}
+
 int main()
 {
     ifstream Myfile;
@@ -51,26 +98,9 @@ int main()
         }
     }
     Myfile.close();
-    // int **temparr;
-    // *temparr=new int[5];
-    // for (int i = 0; i < 5; i++)
-    // {
-    //     temparr[i]=new int[5];
-    // }
-    // temparr[0][1]=2;
-    // Outdegree(arr, vertices);
-    // Indegree(arr, vertices);
+    Outdegree(arr, vertices);
+    Indegree(arr, vertices);
     cout << "Hello world" << endl;
-    // cout<<arr[0][1];
-    cout << vertices;
     int i=0;
-    while (i<vertices)
-    {
-        // for (int j = 0; j < 7; j++)
-        // {
-            cout << "ndwaniudaw" << endl;
-        // }
-        i++;
-    }
     return 0;
 }
