@@ -3,6 +3,17 @@
 #include <cstring>
 #include <string>
 using namespace std;
+void DisplayArray(int **array,int size){
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            cout<<array[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    
+}
 void Outdegree(int **array, int size)
 {
     int *OD;
@@ -94,13 +105,12 @@ int main()
         else
         {
             arr[X][Y] = value;
-            arr[Y][X] = value;
+            // arr[Y][X] = value;
         }
     }
     Myfile.close();
+    DisplayArray(arr,vertices);
     Outdegree(arr, vertices);
     Indegree(arr, vertices);
-    cout << "Hello world" << endl;
-    int i=0;
     return 0;
 }
