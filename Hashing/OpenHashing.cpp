@@ -25,39 +25,47 @@ void addKey(int number)
         {
             root = root->next;
         }
-        root->next=ptr;
-        ptr->value=number;
-        ptr->next=NULL;
+        root->next = ptr;
+        ptr->value = number;
+        ptr->next = NULL;
     }
-    // cout << HT[key]->value << " " << root->next;
 }
 void getKey(int number)
 {
     int key = number % HS;
+    int count = 1;
     if (HT[key]->value == number)
     {
-        // cout << key;
+        cout << "Key: " << key << " at index: " << count;
     }
-    else{
-        OpenHash* root=new OpenHash();
-        root=HT[key];
-        while (root->next!=NULL)
+    else
+    {
+        OpenHash *root = new OpenHash();
+        root = HT[key];
+        while (true)
         {
-            root=root->next;
+            if (root->value == number)
+            {
+                cout << "Key: " << key << " at index: " << count;
+                break;
+            }
+            count++;
+            root = root->next;
         }
-        // cout<<key;
     }
 }
-void getFromIndex(int index){
-    OpenHash* root=new OpenHash();
-    root=HT[index];
-    while (root!=NULL)
+void getFromIndex(int index)
+{
+    OpenHash *root = new OpenHash();
+    root = HT[index];
+    int count = 1;
+    while (root != NULL)
     {
-        cout<<root->value<<endl;
-        root=root->next;
+        cout << root->value << " at " << count << endl;
+        count++;
+        root = root->next;
     }
-    cout<<root->value;
-    
+    cout << root->value << " at " << count << endl;
 }
 int main()
 {
@@ -73,8 +81,8 @@ int main()
     addKey(17);
     addKey(36);
 
-    // getKey(16);
-    getFromIndex(6);
+    getKey(26);
+    // getFromIndex(6);
     // obj.getKey();
     return 0;
 }
