@@ -67,6 +67,30 @@ void getFromIndex(int index)
     }
     cout << root->value << " at " << count << endl;
 }
+void DisplayHashT()
+{
+    OpenHash *root = new OpenHash();
+    for (int i = 0; i < HS; i++)
+    {
+        if (HT[i] == NULL)
+        {
+            continue;
+        }
+        else
+        {
+            int count = 1;
+            root = HT[i];
+            cout << "For Index " << i << " : ";
+            while (root->next != NULL)
+            {
+                cout << root->value << " " ;
+                count++;
+                root = root->next;
+            }
+            cout << root->value << " "<<endl;
+        }
+    }
+}
 int main()
 {
     for (int i = 0; i < HS; i++)
@@ -81,7 +105,8 @@ int main()
     addKey(17);
     addKey(36);
 
-    getKey(26);
+    // getKey(26);
+    DisplayHashT();
     // getFromIndex(6);
     // obj.getKey();
     return 0;
