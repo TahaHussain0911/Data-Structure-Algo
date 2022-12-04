@@ -13,11 +13,11 @@ void insertionsort(int *array, int size)
                 array[j] = temp;
             }
         }
-        // for (int k = 0; k < size; k++)
-        // {
-        //     cout << array[k] << " ";
-        // }
-        // cout << endl;
+        for (int k = 0; k < size; k++)
+        {
+            cout << array[k] << " ";
+        }
+        cout << endl;
     }
 }
 

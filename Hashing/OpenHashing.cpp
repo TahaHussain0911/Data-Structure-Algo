@@ -11,6 +11,8 @@ void addKey(int number)
 {
     int key = number % HS;
     OpenHash *ptr = new OpenHash();
+    ptr->value = number;
+    ptr->next = NULL;
     if (HT[key] == NULL)
     {
         ptr->value = number;
@@ -26,8 +28,6 @@ void addKey(int number)
             root = root->next;
         }
         root->next = ptr;
-        ptr->value = number;
-        ptr->next = NULL;
     }
 }
 void getKey(int number)
@@ -83,11 +83,11 @@ void DisplayHashT()
             cout << "For Index " << i << " : ";
             while (root->next != NULL)
             {
-                cout << root->value << " " ;
+                cout << root->value << " ";
                 count++;
                 root = root->next;
             }
-            cout << root->value << " "<<endl;
+            cout << root->value << " " << endl;
         }
     }
 }

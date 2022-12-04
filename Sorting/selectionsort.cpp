@@ -5,7 +5,7 @@ void selectionsort(int *array, int size)
     for (int i = 0; i < size - 1; i++)
     {
         int temp = array[i];
-        int count=i;
+        int count = i;
         for (int j = i + 1; j < size; j++)
         {
             if (array[j] < temp)
@@ -16,6 +16,11 @@ void selectionsort(int *array, int size)
         }
         array[count] = array[i];
         array[i] = temp;
+        for (int k = 0; k < size; k++)
+        {
+            cout << array[k] << " ";
+        }
+        cout << endl;
     }
 }
 
